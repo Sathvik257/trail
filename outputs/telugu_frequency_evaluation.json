@@ -1,0 +1,113 @@
+{
+  "protocol": "Post-hoc diagnostic, seed 42. Frequency counts training next-word targets. Rare: known vocabulary targets with <=10 training occurrences. OOV is separate. Unknown prefix means at least one input word maps to UNK. No tuning on these results.",
+  "models": {
+    "cnn": {
+      "checkpoint_sha256": "f79c88ab30148fde555ed2ebb1a9fb00645f6b052bfbdc6d4384439f7fbf22c0",
+      "groups": {
+        "all": {
+          "examples": 200092,
+          "top1_hits": 35350,
+          "top5_hits": 67094,
+          "top1_accuracy": 0.17666873238310377,
+          "top5_accuracy": 0.3353157547528137
+        },
+        "oov": {
+          "examples": 14422,
+          "top1_hits": 0,
+          "top5_hits": 0,
+          "top1_accuracy": 0.0,
+          "top5_accuracy": 0.0
+        },
+        "rare_1_10": {
+          "examples": 125,
+          "top1_hits": 3,
+          "top5_hits": 4,
+          "top1_accuracy": 0.024,
+          "top5_accuracy": 0.032
+        },
+        "medium_11_100": {
+          "examples": 29846,
+          "top1_hits": 1746,
+          "top5_hits": 3865,
+          "top1_accuracy": 0.058500301547946124,
+          "top5_accuracy": 0.12949809019634123
+        },
+        "frequent_101_plus": {
+          "examples": 155699,
+          "top1_hits": 33601,
+          "top5_hits": 63225,
+          "top1_accuracy": 0.21580742329751637,
+          "top5_accuracy": 0.40607197220277585
+        },
+        "unknown_prefix": {
+          "examples": 57089,
+          "top1_hits": 7495,
+          "top5_hits": 14899,
+          "top1_accuracy": 0.13128623727863512,
+          "top5_accuracy": 0.260978472210058
+        },
+        "known_prefix": {
+          "examples": 143003,
+          "top1_hits": 27855,
+          "top5_hits": 52195,
+          "top1_accuracy": 0.19478612336804124,
+          "top5_accuracy": 0.3649923428179828
+        }
+      }
+    },
+    "wordchar_cnn": {
+      "checkpoint_sha256": "1c730fdd47de270127dcd2655a257699781b477b94b66f83a008a5e376774af6",
+      "groups": {
+        "all": {
+          "examples": 200092,
+          "top1_hits": 37122,
+          "top5_hits": 69388,
+          "top1_accuracy": 0.18552465865701778,
+          "top5_accuracy": 0.34678048097874975
+        },
+        "oov": {
+          "examples": 14422,
+          "top1_hits": 0,
+          "top5_hits": 0,
+          "top1_accuracy": 0.0,
+          "top5_accuracy": 0.0
+        },
+        "rare_1_10": {
+          "examples": 125,
+          "top1_hits": 2,
+          "top5_hits": 4,
+          "top1_accuracy": 0.016,
+          "top5_accuracy": 0.032
+        },
+        "medium_11_100": {
+          "examples": 29846,
+          "top1_hits": 1802,
+          "top5_hits": 3981,
+          "top1_accuracy": 0.06037659987938082,
+          "top5_accuracy": 0.13338470816859882
+        },
+        "frequent_101_plus": {
+          "examples": 155699,
+          "top1_hits": 35318,
+          "top5_hits": 65403,
+          "top1_accuracy": 0.22683511133661743,
+          "top5_accuracy": 0.4200605013519676
+        },
+        "unknown_prefix": {
+          "examples": 57089,
+          "top1_hits": 8360,
+          "top5_hits": 16486,
+          "top1_accuracy": 0.1464380178318065,
+          "top5_accuracy": 0.2887771724850672
+        },
+        "known_prefix": {
+          "examples": 143003,
+          "top1_hits": 28762,
+          "top5_hits": 52902,
+          "top1_accuracy": 0.2011286476507486,
+          "top5_accuracy": 0.3699362950427613
+        }
+      }
+    }
+  }
+}

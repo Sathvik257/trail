@@ -1,0 +1,51 @@
+{
+  "created_utc": "2026-09-22T08:15:38.190074+00:00",
+  "sources": [
+    {
+      "file": "alpaca.csv",
+      "dataset": "Telugu-LLM-Labs/telugu_alpaca_yahma_cleaned_filtered_romanized",
+      "sha256": "a890ac5d34f6ceee455d98e1b9a82044cbf99db760dec6ad87d18ab64dbe5b0e",
+      "license": "cc-by-4.0",
+      "rows": 28910,
+      "url": "https://huggingface.co/datasets/Telugu-LLM-Labs/telugu_alpaca_yahma_cleaned_filtered_romanized"
+    },
+    {
+      "file": "gpteacher.csv",
+      "dataset": "Telugu-LLM-Labs/telugu_teknium_GPTeacher_general_instruct_filtered_romanized",
+      "sha256": "b06688c8295a05458bf6a97548d2a925dcd45ce483cd28abaa4edb2efc82810d",
+      "license": "mit",
+      "rows": 43614,
+      "url": "https://huggingface.co/datasets/Telugu-LLM-Labs/telugu_teknium_GPTeacher_general_instruct_filtered_romanized"
+    }
+  ],
+  "text_fields": [
+    "telugu_instruction",
+    "telugu_input",
+    "telugu_output"
+  ],
+  "language": "telugu",
+  "task": "next-word LSTM training (not Llama2 fine-tuning)",
+  "split_method": "SHA256(seed=42, normalized instruction): 90/5/5; exact sentence overlaps removed",
+  "splits": {
+    "train": {
+      "sentences": 312456,
+      "sequences": 3483073
+    },
+    "validation": {
+      "sentences": 18294,
+      "sequences": 198928
+    },
+    "test": {
+      "sentences": 18662,
+      "sequences": 200092
+    }
+  },
+  "unique_sentences": {
+    "train": 312456,
+    "validation": 18294,
+    "test": 18662
+  },
+  "vocab_size": 20000,
+  "vocab_fit": "training split only",
+  "ngram_training_sentence_limit": 15000
+}

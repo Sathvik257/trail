@@ -1,0 +1,81 @@
+{
+  "best_accuracy": 0.19072227137456768,
+  "stale": 1,
+  "history": [
+    {
+      "epoch": 6,
+      "validation": {
+        "examples": 198928,
+        "cross_entropy": 5.203781890071408,
+        "vocabulary_perplexity": 181.95909154324104,
+        "top1_accuracy": 0.19049103193115097,
+        "top3_accuracy": 0.30098327032896327,
+        "top5_accuracy": 0.3514085498270731,
+        "target_oov_rate": 0.07056321885305239,
+        "known_target_top1": 0.2049531886354663,
+        "known_target_top5": 0.37808763000903234,
+        "evaluation_seconds": 99.3651072000066
+      }
+    },
+    {
+      "epoch": 7,
+      "validation": {
+        "examples": 198928,
+        "cross_entropy": 5.207749137181936,
+        "vocabulary_perplexity": 182.68240205047542,
+        "top1_accuracy": 0.19028995415426686,
+        "top3_accuracy": 0.30077213866323493,
+        "top5_accuracy": 0.35178054371430867,
+        "target_oov_rate": 0.07056321885305239,
+        "known_target_top1": 0.20473684495189057,
+        "known_target_top5": 0.37848786582364746,
+        "evaluation_seconds": 110.31550310000603
+      }
+    },
+    {
+      "epoch": 8,
+      "validation": {
+        "examples": 198928,
+        "cross_entropy": 5.215659041593802,
+        "vocabulary_perplexity": 184.13313239366636,
+        "top1_accuracy": 0.19064184026381403,
+        "top3_accuracy": 0.30073695005228024,
+        "top5_accuracy": 0.35127282232767637,
+        "target_oov_rate": 0.07056321885305239,
+        "known_target_top1": 0.2051154463981481,
+        "known_target_top5": 0.37794159802261873,
+        "evaluation_seconds": 103.54676710002241
+      }
+    },
+    {
+      "epoch": 9,
+      "validation": {
+        "examples": 198928,
+        "cross_entropy": 5.2214728556144925,
+        "vocabulary_perplexity": 185.20676610972072,
+        "top1_accuracy": 0.19072227137456768,
+        "top3_accuracy": 0.30061127644172764,
+        "top5_accuracy": 0.35147892704898254,
+        "target_oov_rate": 0.07056321885305239,
+        "known_target_top1": 0.2052019838715784,
+        "known_target_top5": 0.37816335029828385,
+        "evaluation_seconds": 89.5014393000165
+      }
+    },
+    {
+      "epoch": 10,
+      "validation": {
+        "examples": 198928,
+        "cross_entropy": 5.22885614832514,
+        "vocabulary_perplexity": 186.57926241196995,
+        "top1_accuracy": 0.19025476554331217,
+        "top3_accuracy": 0.3004906297755972,
+        "top5_accuracy": 0.3519514598246602,
+        "target_oov_rate": 0.07056321885305239,
+        "known_target_top1": 0.2046989848072648,
+        "known_target_top5": 0.3786717579546868,
+        "evaluation_seconds": 107.84707580000395
+      }
+    }
+  ]
+}

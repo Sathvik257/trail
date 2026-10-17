@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "completed_epochs": 5,
+  "best_epoch": 5,
+  "parameter_count": 4164000,
+  "test_metrics": {
+    "examples": 200092,
+    "cross_entropy": 5.266626825537206,
+    "vocabulary_perplexity": 193.76126830526547,
+    "top1_accuracy": 0.17666873238310377,
+    "top3_accuracy": 0.28422425684185276,
+    "top5_accuracy": 0.3353157547528137,
+    "target_oov_rate": 0.07207684465146036,
+    "known_target_top1": 0.19039155490924758,
+    "known_target_top5": 0.36136155544783755,
+    "evaluation_seconds": 76.10293240001192,
+    "architecture": "cnn",
+    "best_epoch": 5,
+    "completed_epochs": 5,
+    "parameter_count": 4164000,
+    "checkpoint": "C:\\Users\\sweth\\OneDrive\\Documents\\UROP\\outputs\\telugu_cnn\\cnn_best.pt",
+    "training_examples_per_epoch": 3483073
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "metrics": {
+    "examples": 200092,
+    "cross_entropy": 5.170736735759753,
+    "vocabulary_perplexity": 176.04448798872824,
+    "top1_accuracy": 0.1942106630949763,
+    "top3_accuracy": 0.3047448173840034,
+    "top5_accuracy": 0.3556264118505488,
+    "target_oov_rate": 0.07207684465146036,
+    "known_target_top1": 0.20929606290730868,
+    "known_target_top5": 0.38324985188775784,
+    "evaluation_seconds": 106.85115460000816,
+    "best_epoch": 9,
+    "selection": "validation_top1"
+  },
+  "verification_passed": true
+}

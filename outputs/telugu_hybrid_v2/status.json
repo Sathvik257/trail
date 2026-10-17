@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "pid": 5396,
+  "selected_candidate": "long_50",
+  "metrics": {
+    "examples": 200092,
+    "top1_accuracy": 0.20842412490254483,
+    "top5_accuracy": 0.37458768966275513
+  },
+  "verification_passed": true
+}

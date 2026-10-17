@@ -1,0 +1,17 @@
+{
+  "verified_utc": "2026-10-12T17:21:24.235689+00:00",
+  "models": {
+    "lstm": {
+      "checkpoint_sha256": "c17d4c3f867b20c7bae1e472ddd6e17d8f42edf9609fbce3d6457f281a667003",
+      "epoch": 5,
+      "prediction_count": 5,
+      "status": "passed"
+    },
+    "bilstm": {
+      "checkpoint_sha256": "f2b9cfdaa882ebb1f77abb9b9439bdb04a81ba8033ee2e731ea9520b36f7132f",
+      "epoch": 5,
+      "prediction_count": 5,
+      "status": "passed"
+    }
+  }
+}

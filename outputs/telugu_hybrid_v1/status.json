@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "pid": 5544,
+  "selected_weight": 0.25,
+  "metrics": {
+    "examples": 200092,
+    "top1_accuracy": 0.20616016632349118,
+    "top5_accuracy": 0.3762669172180797
+  },
+  "verification_passed": true
+}

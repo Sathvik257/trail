@@ -1,0 +1,18 @@
+{
+  "examples": 200092,
+  "cross_entropy": 5.293392333227887,
+  "vocabulary_perplexity": 199.01741495414268,
+  "top1_accuracy": 0.18027707254662856,
+  "top3_accuracy": 0.28780261079903247,
+  "top5_accuracy": 0.33569058233212723,
+  "target_oov_rate": 0.07207684465146036,
+  "known_target_top1": 0.19428017450315074,
+  "known_target_top5": 0.3617654979264286,
+  "evaluation_seconds": 72.47272170003271,
+  "architecture": "lstm",
+  "best_epoch": 5,
+  "completed_epochs": 5,
+  "parameter_count": 3959328,
+  "checkpoint": "C:\\Users\\sweth\\OneDrive\\Documents\\UROP\\outputs\\telugu_comparison\\lstm_best.pt",
+  "training_examples_per_epoch": 3483073
+}

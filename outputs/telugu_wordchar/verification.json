@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "completed_epochs": 5,
+  "best_epoch": 5,
+  "parameter_count": 4176432,
+  "test_metrics": {
+    "examples": 200092,
+    "cross_entropy": 5.118748376235213,
+    "vocabulary_perplexity": 167.12605971174997,
+    "top1_accuracy": 0.18552465865701778,
+    "top3_accuracy": 0.295933870419607,
+    "top5_accuracy": 0.34678048097874975,
+    "target_oov_rate": 0.07207684465146036,
+    "known_target_top1": 0.19993536920342544,
+    "known_target_top5": 0.3737168093930091,
+    "evaluation_seconds": 34.376723199966364,
+    "architecture": "wordchar_cnn",
+    "best_epoch": 5,
+    "completed_epochs": 5,
+    "parameter_count": 4176432,
+    "checkpoint": "C:\\Users\\sweth\\OneDrive\\Documents\\UROP\\outputs\\telugu_wordchar\\wordchar_cnn_best.pt",
+    "training_examples_per_epoch": 3483073
+  }
+}

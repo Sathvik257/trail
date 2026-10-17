@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checkpoint": "C:\\Users\\sweth\\OneDrive\\Documents\\UROP\\outputs\\telugu_comparison\\lstm_best.pt",
+  "architecture": "lstm",
+  "epoch": 5,
+  "partial_batch": 0,
+  "checks": [
+    "finite checkpoint weights",
+    "real Telugu predictions",
+    "no special-token suggestions",
+    "empty and non-Telugu input",
+    "all unknown input",
+    "multilingual branding",
+    "LSTM UI prediction",
+    "default LSTM interface"
+  ]
+}
