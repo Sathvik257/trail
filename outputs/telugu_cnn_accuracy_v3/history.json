@@ -1,0 +1,66 @@
+{
+  "best_accuracy": 0.18582100056301779,
+  "stale": 0,
+  "history": [
+    {
+      "epoch": 11,
+      "validation": {
+        "examples": 198928,
+        "cross_entropy": 5.26367676387527,
+        "vocabulary_perplexity": 193.19050292654188,
+        "top1_accuracy": 0.18515241695487814,
+        "top3_accuracy": 0.29469456285691303,
+        "top5_accuracy": 0.3440088876377383,
+        "target_oov_rate": 0.07056321885305239,
+        "known_target_top1": 0.1992092638365307,
+        "known_target_top5": 0.37012618245344553,
+        "evaluation_seconds": 106.66243419994134
+      }
+    },
+    {
+      "epoch": 12,
+      "validation": {
+        "examples": 198928,
+        "cross_entropy": 5.26855113145228,
+        "vocabulary_perplexity": 194.13448323465911,
+        "top1_accuracy": 0.1856802461191989,
+        "top3_accuracy": 0.29447840424676264,
+        "top5_accuracy": 0.34413456124829084,
+        "target_oov_rate": 0.07056321885305239,
+        "known_target_top1": 0.199777166005917,
+        "known_target_top5": 0.37026139725568036,
+        "evaluation_seconds": 93.0926441999618
+      }
+    },
+    {
+      "epoch": 13,
+      "validation": {
+        "examples": 198928,
+        "cross_entropy": 5.269249502406139,
+        "vocabulary_perplexity": 194.27010847174353,
+        "top1_accuracy": 0.1850518780664361,
+        "top3_accuracy": 0.2949810986889729,
+        "top5_accuracy": 0.34499416874447036,
+        "target_oov_rate": 0.07056321885305239,
+        "known_target_top1": 0.19910109199474285,
+        "known_target_top5": 0.3711862665029666,
+        "evaluation_seconds": 138.22864310001023
+      }
+    },
+    {
+      "epoch": 14,
+      "validation": {
+        "examples": 198928,
+        "cross_entropy": 5.273033385705192,
+        "vocabulary_perplexity": 195.00659640414995,
+        "top1_accuracy": 0.18582100056301779,
+        "top3_accuracy": 0.2956496822971125,
+        "top5_accuracy": 0.34572810263009734,
+        "target_oov_rate": 0.07056321885305239,
+        "known_target_top1": 0.19992860658442002,
+        "known_target_top5": 0.371975920948018,
+        "evaluation_seconds": 92.96728709992021
+      }
+    }
+  ]
+}

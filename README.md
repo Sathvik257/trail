@@ -12,6 +12,7 @@ All rows use the same 200,092 held-out test examples. Higher accuracy is better;
 | Bi-LSTM, 5 epochs | 18.82% | 35.00% | 178.60 |
 | Word CNN | 17.67% | 33.53% | 193.76 |
 | Fine-tuned word CNN, 10 epochs | 18.68% | 34.70% | 183.54 |
+| Continued word CNN, 14 epochs | 18.74% | 34.83% | 185.24 |
 | Gated word-character CNN | 18.55% | 34.68% | 167.13 |
 | Fine-tuned Bi-LSTM v2 | 19.42% | 35.56% | 176.04 |
 | Regularized Bi-LSTM v3 | 19.35% | 35.72% | 169.48 |
@@ -62,4 +63,3 @@ Baseline training: Adam, learning rate 0.001, batch 512, seed 42, five epochs. B
 ## Limits
 
 The vocabulary is fixed; unseen target words count as misses. Several plausible next words may exist, while evaluation checks one recorded target. Results use one seed and repeated reporting on the same test set; a fresh untouched evaluation set is needed for independent confirmation. Exact duplicate checks do not exclude semantic duplication. Novelty, gate-specific benefit, and 80–90% accuracy are not established. Training can take hours on CPU and cannot continue through shutdown.
-

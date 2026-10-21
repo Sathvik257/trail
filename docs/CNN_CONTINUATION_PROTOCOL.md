@@ -1,0 +1,3 @@
+# CNN continuation protocol (2026-10-19)
+
+User requested continued training. Isolated output: outputs/telugu_cnn_accuracy_v3. Parent: v2 best epoch 10. Continue restored Adam at 0.0003, same data hashes, batch 512 and deterministic epoch shuffle. Maximum total epoch 14, patience 2, select validation top-1 including parent as fallback. No test-based selection. Validation top-1 was still rising at epoch 10 (18.5650%), although cross-entropy worsened; both trends must be reported. Preserve v2, original models and UI. This bounded continuation does not establish maximum achievable accuracy. On completion reload and verify selected model, evaluate held-out set, report honest comparisons; publication needs independent fresh evaluation and multi-seed evidence.

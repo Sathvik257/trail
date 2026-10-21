@@ -1,0 +1,14 @@
+{
+  "examples": 200092,
+  "cross_entropy": 5.221678240411754,
+  "vocabulary_perplexity": 185.24480867037778,
+  "top1_accuracy": 0.18740879195570037,
+  "top3_accuracy": 0.29747816004637867,
+  "top5_accuracy": 0.3483197729044639,
+  "target_oov_rate": 0.07207684465146036,
+  "known_target_top1": 0.20196585339580977,
+  "known_target_top5": 0.3753756665050897,
+  "evaluation_seconds": 100.90095969999675,
+  "best_epoch": 14,
+  "selection": "validation_top1"
+}
