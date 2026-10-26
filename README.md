@@ -14,6 +14,7 @@ All rows use the same 200,092 held-out test examples. Higher accuracy is better;
 | Fine-tuned word CNN, 10 epochs | 18.68% | 34.70% | 183.54 |
 | Continued word CNN, 14 epochs | 18.74% | 34.83% | 185.24 |
 | Gated word-character CNN | 18.55% | 34.68% | 167.13 |
+| Fine-tuned gated word-character CNN (selected epoch 9) | 19.60% | 36.06% | 157.03 |
 | Fine-tuned Bi-LSTM v2 | 19.42% | 35.56% | 176.04 |
 | Regularized Bi-LSTM v3 | 19.35% | 35.72% | 169.48 |
 | Hybrid v1 | 20.62% | **37.63%** | Not measured |
@@ -63,3 +64,7 @@ Baseline training: Adam, learning rate 0.001, batch 512, seed 42, five epochs. B
 ## Limits
 
 The vocabulary is fixed; unseen target words count as misses. Several plausible next words may exist, while evaluation checks one recorded target. Results use one seed and repeated reporting on the same test set; a fresh untouched evaluation set is needed for independent confirmation. Exact duplicate checks do not exclude semantic duplication. Novelty, gate-specific benefit, and 80–90% accuracy are not established. Training can take hours on CPU and cannot continue through shutdown.
+
+## Gated word-character fine-tuning update
+
+Completed through epoch 10; validation selected epoch 9. Held-out top-1 improved by 1.0470 percentage points over the original word-character model, while the hybrid remains higher at 20.8424%. See [full results and limitations](docs/WORDCHAR_FINE_TUNING_RESULTS.md). The demo default is unchanged.
