@@ -1,0 +1,28 @@
+{
+  "language": "english",
+  "dataset": "yahma/alpaca-cleaned",
+  "revision": "12567cabf869d7c92e573c7c783905fc160e9639",
+  "source_file": "alpaca_data_cleaned.json",
+  "sha256": "bd844b8247a0f543804b6ce0882b0aaec4bbf5e8d66167df6213a0f1e4fe878b",
+  "license": "cc-by-4.0",
+  "source_records": 51760,
+  "splits": {
+    "train": {
+      "sentences": 369428,
+      "sequences": 5159864
+    },
+    "validation": {
+      "sentences": 20810,
+      "sequences": 285386
+    },
+    "test": {
+      "sentences": 22916,
+      "sequences": 308612
+    }
+  },
+  "vocab_size": 20000,
+  "split_method": "SHA256 normalized instruction seed42 90/5/5; exact sentence overlap removed",
+  "vocab_fit": "train only",
+  "repetition_filter": "reject sentences with a four-token phrase repeated at least four times",
+  "rejected_sentences": 153
+}

@@ -1,0 +1,39 @@
+{
+  "candidate": "parent",
+  "configuration": [
+    "long",
+    0.35
+  ],
+  "validation": {
+    "parent": {
+      "examples": 280957,
+      "top1_accuracy": 0.3293030606106984,
+      "top5_accuracy": 0.5670511857686408
+    },
+    "discount_25": {
+      "examples": 280957,
+      "top1_accuracy": 0.32715326544631385,
+      "top5_accuracy": 0.5665030591869931
+    },
+    "discount_50": {
+      "examples": 280957,
+      "top1_accuracy": 0.3286018856978114,
+      "top5_accuracy": 0.567186437782294
+    },
+    "discount_75": {
+      "examples": 280957,
+      "top1_accuracy": 0.3190381446271138,
+      "top5_accuracy": 0.5600394366397705
+    }
+  },
+  "selection": "validation_top1",
+  "data_hashes": {
+    "train": "8ce3093f771d016b4ec1b58003c30cac77ecfaf53524e3ee7d05b40c43f0f3f5",
+    "validation": "46dbdf512bb9d468011ebd5394429aff0d203d684ee1eebfdf365ac70fb01d9e",
+    "test": "86fa6294ab4e85ebd5104b06193fa04b4404733c5cd0825d32bb97d22b2d2c81",
+    "vocab": "040da42242f3949405281c1b8d30c63746f0ee67135ddd963ec03c59fa16312e",
+    "train_sequences": "ff7f823e3dc6f3ed59d0d2658b3eebc0e6d97064e1d3a63a1f0554c8e1a81511",
+    "validation_sequences": "d994ddb93c8110310c60b12bc58b1c5543b756d07c807e736c1a0efdff772dc2",
+    "test_sequences": "704d8159a76f32f6315d7f5fd89ec671cf45dcdb57c9b7a29383a32d9f93272a"
+  }
+}

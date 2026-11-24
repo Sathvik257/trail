@@ -1,3 +1,3 @@
 @echo off
-chcp 65001 > nul
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0run_telugu_predict.ps1" -Text "%*"
+chcp 65001 >nul
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0run_telugu_predict.ps1" %*

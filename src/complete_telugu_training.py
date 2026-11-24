@@ -27,7 +27,7 @@ try:
     record('verifying', target_epochs=5)
     subprocess.run([sys.executable, '-X', 'utf8', str(root / 'src' / 'verify_telugu_training.py')], cwd=root, check=True)
     subprocess.run([sys.executable, '-X', 'utf8', str(root / 'src' / 'check_telugu_ui.py')], cwd=root, check=True)
-    record('complete', target_epochs=5, report=str(root / 'TELUGU_RESULTS.md'))
+    record('complete', target_epochs=5, report=str(root / 'outputs/telugu_comparison/baseline_results.md'))
     print('Training, model verification, results report and interface checks completed.', flush=True)
 except BaseException as exc:
     record('failed', error=str(exc))

@@ -1,0 +1,39 @@
+{
+  "candidate": "long_50",
+  "configuration": [
+    "long",
+    0.5
+  ],
+  "validation": {
+    "neural": {
+      "examples": 285386,
+      "top1_accuracy": 0.2703916800403664,
+      "top5_accuracy": 0.4675807502820741
+    },
+    "long_10": {
+      "examples": 285386,
+      "top1_accuracy": 0.2804832752833005,
+      "top5_accuracy": 0.49095260454261946
+    },
+    "long_25": {
+      "examples": 285386,
+      "top1_accuracy": 0.2917171830433168,
+      "top5_accuracy": 0.5016258681224727
+    },
+    "long_50": {
+      "examples": 285386,
+      "top1_accuracy": 0.29598158283868164,
+      "top5_accuracy": 0.500014016104504
+    }
+  },
+  "selection": "validation_top1",
+  "data_hashes": {
+    "train": "89fbbb47a7c8735c11eeebef65c5cb62633c19167265f542e08c59e00dbd52d4",
+    "validation": "2fb28ac0da77bc18fa6fccb1eb85fcf852d0709c2c2d7367290d9fcc94a4beef",
+    "test": "3eb1ea63d128b3265e088596cba76f7c0b917e1d328630e0d991d228f1de2370",
+    "vocab": "992bbf72b3f463c379746625bc2ee31abe3a5777cac42cdb6b8d8f8aec4ec061",
+    "train_sequences": "e69e72ae5f4abf4f2ffbab36c5193555c379cbc790bd35678a726f9b37cfb4ed",
+    "validation_sequences": "21c62432f57f0bb584a45dda5afc34060f006ffe4ffdeb1c21db962b6de16def",
+    "test_sequences": "0d7920c39cd86b1dc504b072ad8e15b096bea48b0f4f90e5df50b43ee6c6d67b"
+  }
+}

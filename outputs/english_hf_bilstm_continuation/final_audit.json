@@ -1,0 +1,35 @@
+{
+  "source_sha256_verified": true,
+  "split_separation_verified": true,
+  "checkpoint_data_hashes_verified": true,
+  "language_inference": {
+    "predictions": [
+      {
+        "word": "the",
+        "probability": 0.27838432788848877
+      },
+      {
+        "word": "this",
+        "probability": 0.16431991755962372
+      },
+      {
+        "word": "a",
+        "probability": 0.1253897249698639
+      },
+      {
+        "word": "an",
+        "probability": 0.03191195800900459
+      },
+      {
+        "word": "ai",
+        "probability": 0.018151240423321724
+      }
+    ],
+    "unknown_words": [],
+    "context": [
+      "the",
+      "purpose",
+      "of"
+    ]
+  }
+}

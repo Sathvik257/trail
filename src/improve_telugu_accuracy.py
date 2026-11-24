@@ -12,21 +12,21 @@ from train_telugu_comparison import audit_data, load_split, evaluate, save_json,
 ROOT = project_root()
 OUT = ROOT / 'outputs' / 'telugu_accuracy_v2'
 
-def main():
-    OUT.mkdir(parents=True, exist_ok=True)
-    lock = (OUT / '.training.lock').open('a+b')
+def fine_tune(data, parent, out, audit=audit_data, maximum_epoch=10):
+    out.mkdir(parents=True, exist_ok=True)
+    lock = (out / '.training.lock').open('a+b')
     if lock.tell() == 0:
         lock.write(b'0'); lock.flush()
     lock.seek(0)
     import msvcrt
     msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
     torch.set_num_threads(4)
-    state = OUT / 'status.json'
+    state = out / 'status.json'
     try:
         save_json(state, dict(status='auditing_dataset', pid=os.getpid()))
-        hashes = audit_data(ROOT / 'data_telugu_llm')
-        latest = OUT / 'bilstm_latest.pt'
-        source = latest if latest.exists() else ROOT / 'outputs/telugu_comparison/bilstm_best.pt'
+        hashes = audit(data)
+        latest = out / 'bilstm_latest.pt'
+        source = latest if latest.exists() else parent
         cp = torch.load(source, weights_only=True, map_location='cpu')
         if hashes != cp['experiment']['data_hashes']:
             raise ValueError('Dataset changed from original experiment')
@@ -36,16 +36,16 @@ def main():
         for group in optimizer.param_groups:
             group['lr'] = 0.0003
         run = cp.get('accuracy_v2', dict(best_accuracy=cp['history'][-1]['validation']['top1_accuracy'], stale=0, history=[]))
-        if not (OUT / 'bilstm_best.pt').exists():
-            save_model(OUT / 'bilstm_best.pt', cp)
-        save_json(OUT / 'experiment.json', dict(parent_checkpoint=str(ROOT / 'outputs/telugu_comparison/bilstm_best.pt'), learning_rate=0.0003, maximum_total_epochs=10, patience=2, selection='validation_top1', batch_size=512, data_hashes=hashes))
-        train = load_split(ROOT / 'data_telugu_llm')
-        val = load_split(ROOT / 'data_telugu_llm/validation')
+        if not (out / 'bilstm_best.pt').exists():
+            save_model(out / 'bilstm_best.pt', cp)
+        save_json(out / 'experiment.json', dict(parent_checkpoint=str(parent), learning_rate=0.0003, maximum_total_epochs=maximum_epoch, patience=2, selection='validation_top1', batch_size=512, data_hashes=hashes))
+        train = load_split(data)
+        val = load_split(data / 'validation')
         first = cp['epoch'] + (0 if cp.get('partial_batch', 0) else 1)
         skip = cp.get('partial_batch', 0)
         def bundle(epoch, partial):
             return dict(cp, model_state_dict=model.state_dict(), optimizer_state_dict=optimizer.state_dict(), epoch=epoch, partial_batch=partial, accuracy_v2=run)
-        for epoch in range(first, 11):
+        for epoch in range(first, maximum_epoch + 1):
             if run['stale'] >= 2:
                 break
             model.train()
@@ -72,28 +72,28 @@ def main():
             if metrics['top1_accuracy'] > run['best_accuracy']:
                 run['best_accuracy'] = metrics['top1_accuracy']
                 run['stale'] = 0
-                save_model(OUT / 'bilstm_best.pt', bundle(epoch, 0))
+                save_model(out / 'bilstm_best.pt', bundle(epoch, 0))
             else:
                 run['stale'] += 1
             save_model(latest, bundle(epoch, 0))
-            save_json(OUT / 'history.json', run)
+            save_json(out / 'history.json', run)
             print(json.dumps(run), flush=True)
         save_json(state, dict(status='evaluating_test', pid=os.getpid()))
-        best = torch.load(OUT / 'bilstm_best.pt', weights_only=True, map_location='cpu')
+        best = torch.load(out / 'bilstm_best.pt', weights_only=True, map_location='cpu')
         chosen = model_from_checkpoint(best).eval()
-        test = load_split(ROOT / 'data_telugu_llm/test')
+        test = load_split(data / 'test')
         result = evaluate(chosen, test, 512)
         result.update(best_epoch=best['epoch'], selection='validation_top1')
-        save_json(OUT / 'bilstm_test_metrics.json', result)
+        save_json(out / 'bilstm_test_metrics.json', result)
         with torch.inference_mode():
             logits = chosen(test[:2, :-1])
         if logits.shape != (2, len(best['word_to_idx'])) or not torch.isfinite(logits).all():
             raise ValueError('Saved-model inference verification failed')
-        save_json(OUT / 'verification.json', dict(passed=True, checkpoint_load=True, finite_logits=True))
+        save_json(out / 'verification.json', dict(passed=True, checkpoint_load=True, finite_logits=True))
         save_json(state, dict(status='complete', metrics=result, verification_passed=True))
     except BaseException as exc:
         save_json(state, dict(status='failed', error=repr(exc)))
         raise
 
 if __name__ == '__main__':
-    main()
+    fine_tune(ROOT / 'data_telugu_llm', ROOT / 'outputs/telugu_comparison/bilstm_best.pt', OUT)

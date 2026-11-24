@@ -1,0 +1,18 @@
+{
+  "examples": 284823,
+  "cross_entropy": 3.9608040338782633,
+  "vocabulary_perplexity": 52.49952037692683,
+  "top1_accuracy": 0.30494377209705675,
+  "top3_accuracy": 0.46672845942918934,
+  "top5_accuracy": 0.5392682472974444,
+  "target_oov_rate": 0.008682585324921055,
+  "known_target_top1": 0.30761466265273596,
+  "known_target_top5": 0.5439914999114575,
+  "evaluation_seconds": 143.9204933000001,
+  "architecture": "bilstm",
+  "best_epoch": 5,
+  "completed_epochs": 5,
+  "parameter_count": 6618656,
+  "checkpoint": "C:\\Users\\sweth\\OneDrive\\Documents\\UROP\\outputs\\hindi_hf_comparison\\bilstm_best.pt",
+  "training_examples_per_epoch": 4998180
+}

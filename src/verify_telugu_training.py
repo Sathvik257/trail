@@ -41,7 +41,7 @@ report += 'Validation: 198,928 examples. Test: 200,092 examples, using the valid
 report += '| Model | Top-1 | Top-3 | Top-5 | Vocabulary perplexity |\n|---|---:|---:|---:|---:|\n' + '\n'.join(rows)
 report += '\n\nBi-LSTM uses more parameters, so this is an equal-data/equal-epoch comparison, not a parameter-matched comparison. Perplexity collapses unknown words to the unknown token.\n\n'
 report += 'Both saved checkpoints were loaded successfully, verified to contain finite weights, and exercised on Telugu input. The web interface continues to use LSTM, with the model selector and training/evaluation panels hidden as requested.\n'
-(root / 'TELUGU_RESULTS.md').write_text(report, encoding='utf-8')
+(out / 'baseline_results.md').write_text(report, encoding='utf-8')
 (out / 'completion_verification.json').write_text(json.dumps(dict(verified_utc=datetime.now(timezone.utc).isoformat(), models=verified), indent=2), encoding='utf-8')
 print(report)
 

@@ -1,0 +1,12 @@
+Model,Top-1 (%),Top-5 (%),Source
+Hybrid v2,20.842412490254482,37.458768966275514,outputs\telugu_hybrid_v2\test_metrics.json
+Hybrid v1,20.61601663234912,37.62669172180797,outputs\telugu_hybrid_v1\test_metrics.json
+Tuned word-character CNN,19.599484237250863,36.06491014133499,outputs\telugu_wordchar_accuracy_v2\wordchar_cnn_test_metrics.json
+Tuned Bi-LSTM,19.421066309497633,35.56264118505488,outputs\telugu_accuracy_v2\bilstm_test_metrics.json
+Regularized Bi-LSTM,19.348599644163684,35.71557083741479,outputs\telugu_accuracy_v3\bilstm_test_metrics.json
+BILSTM,18.82334126301901,34.99640165523859,outputs\telugu_comparison\bilstm_test_metrics.json
+Word CNN v3,18.740879195570038,34.83197729044639,outputs\telugu_cnn_accuracy_v3\cnn_test_metrics.json
+Word CNN v2,18.677408392139615,34.7045359134798,outputs\telugu_cnn_accuracy_v2\cnn_test_metrics.json
+Word-character CNN,18.552465865701777,34.67804809787498,outputs\telugu_wordchar\wordchar_cnn_test_metrics.json
+LSTM,18.027707254662857,33.56905823321272,outputs\telugu_comparison\lstm_test_metrics.json
+Word CNN,17.666873238310377,33.53157547528137,outputs\telugu_cnn\cnn_test_metrics.json

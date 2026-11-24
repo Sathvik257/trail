@@ -1,16 +1,12 @@
 param(
-    [string]$Text = "I am learning English",
+    [Parameter(Mandatory=$true)][string]$Text,
+    [ValidateSet('lstm', 'bilstm')][string]$Model = 'lstm',
     [int]$TopK = 5,
-    [switch]$Sentences
+    [string]$PythonPath
 )
-
-[Console]::InputEncoding = [System.Text.Encoding]::UTF8
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-$OutputEncoding = [System.Text.Encoding]::UTF8
-
-$argsList = @("-X", "utf8", "src\predict.py", "--language", "english", "--text", $Text, "--top-k", $TopK)
-if ($Sentences) {
-    $argsList += "--sentences"
-}
-
-& ".\.venv\Scripts\python.exe" @argsList
+$ErrorActionPreference = 'Stop'
+Set-Location $PSScriptRoot
+if (-not $PythonPath) { $PythonPath = Join-Path $PSScriptRoot '.venv\Scripts\python.exe' }
+if (-not (Test-Path -LiteralPath $PythonPath)) { throw 'Create .venv and install requirements.txt, or supply -PythonPath.' }
+& $PythonPath -X utf8 src/predict.py --language english --model $Model --text $Text --top-k $TopK
+if ($LASTEXITCODE -ne 0) { throw "Prediction failed with exit code $LASTEXITCODE" }

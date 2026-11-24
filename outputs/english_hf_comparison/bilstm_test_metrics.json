@@ -1,0 +1,18 @@
+{
+  "examples": 308612,
+  "cross_entropy": 4.488540485855697,
+  "vocabulary_perplexity": 88.99146674410399,
+  "top1_accuracy": 0.2659358676914702,
+  "top3_accuracy": 0.4048838023148808,
+  "top5_accuracy": 0.4661873161121408,
+  "target_oov_rate": 0.014458284188560433,
+  "known_target_top1": 0.2698372513562387,
+  "known_target_top5": 0.4730264672036824,
+  "evaluation_seconds": 285.82868189999135,
+  "architecture": "bilstm",
+  "best_epoch": 5,
+  "completed_epochs": 5,
+  "parameter_count": 6618656,
+  "checkpoint": "outputs\\english_hf_comparison\\bilstm_best.pt",
+  "training_examples_per_epoch": 5159864
+}

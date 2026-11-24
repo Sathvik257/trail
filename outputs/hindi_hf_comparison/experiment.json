@@ -1,0 +1,25 @@
+{
+  "seed": 42,
+  "batch_size": 512,
+  "threads": 4,
+  "train_examples": 4998180,
+  "validation_examples": 280957,
+  "data_hashes": {
+    "train": "8ce3093f771d016b4ec1b58003c30cac77ecfaf53524e3ee7d05b40c43f0f3f5",
+    "validation": "46dbdf512bb9d468011ebd5394429aff0d203d684ee1eebfdf365ac70fb01d9e",
+    "test": "86fa6294ab4e85ebd5104b06193fa04b4404733c5cd0825d32bb97d22b2d2c81",
+    "vocab": "040da42242f3949405281c1b8d30c63746f0ee67135ddd963ec03c59fa16312e",
+    "train_sequences": "ff7f823e3dc6f3ed59d0d2658b3eebc0e6d97064e1d3a63a1f0554c8e1a81511",
+    "validation_sequences": "d994ddb93c8110310c60b12bc58b1c5543b756d07c807e736c1a0efdff772dc2",
+    "test_sequences": "704d8159a76f32f6315d7f5fd89ec671cf45dcdb57c9b7a29383a32d9f93272a"
+  },
+  "model_config": {
+    "embedding_dim": 64,
+    "hidden_dim": 128,
+    "num_layers": 1,
+    "dropout": 0.0
+  },
+  "learning_rate": 0.001,
+  "device": "cpu",
+  "torch_version": "2.13.0+cpu"
+}

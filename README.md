@@ -1,70 +1,82 @@
-# Multilingual Next-Word Prediction: Telugu phase
+# Multilingual Next-Word Prediction
 
-PyTorch next-word prediction with a Streamlit interface. Telugu is the current verified language. Legacy multilingual and federated scripts are retained for reference, not used in the current demo.
+A PyTorch research project for **Telugu, Hindi and English**, with a Streamlit demo, reproducible training scripts and saved evaluation evidence. Given a short phrase, the app suggests five next words using a language-specific model.
 
-## Latest verified results
+**Updated: 24 November 2026.** All three language baselines and their Bi-LSTM continuations are complete. The demo uses each language's **LSTM baseline**; the stronger research hybrids are separate experiments. This project trains word-level models from scratch; it does not serve a pretrained LLM.
 
-All rows use the same 200,092 held-out test examples. Higher accuracy is better; lower perplexity is better.
+## Quick start
 
-| Model / experiment | Top-1 | Top-5 | Perplexity |
-|---|---:|---:|---:|
-| LSTM, 5 epochs | 18.03% | 33.57% | 199.02 |
-| Bi-LSTM, 5 epochs | 18.82% | 35.00% | 178.60 |
-| Word CNN | 17.67% | 33.53% | 193.76 |
-| Fine-tuned word CNN, 10 epochs | 18.68% | 34.70% | 183.54 |
-| Continued word CNN, 14 epochs | 18.74% | 34.83% | 185.24 |
-| Gated word-character CNN | 18.55% | 34.68% | 167.13 |
-| Fine-tuned gated word-character CNN (selected epoch 9) | 19.60% | 36.06% | 157.03 |
-| Fine-tuned Bi-LSTM v2 | 19.42% | 35.56% | 176.04 |
-| Regularized Bi-LSTM v3 | 19.35% | 35.72% | 169.48 |
-| Hybrid v1 | 20.62% | **37.63%** | Not measured |
-| Longer-context hybrid v2 | **20.84%** | 37.46% | Not measured |
-
-These are measured experimental results, not 80–90% accuracy. Exact metrics and validation-selection records are in `outputs/`.
-
-## Run
+Python **3.11+** is required by the preparation scripts; the project checks were run with Python 3.12. Git includes saved checkpoints, so the demo needs no dataset download or training. The repository is sizeable because research checkpoints are retained.
 
 ```powershell
+git clone https://github.com/Sathvik257/trail.git
+cd trail
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m streamlit run src/telugu_app.py
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m streamlit run src/app.py
 ```
 
-The app intentionally uses the original LSTM checkpoint, with model and training controls hidden. Best checkpoints are included. Open the local URL printed by Streamlit. No training dataset is required for this demo.
-
-## Data and reproduction
-
-Native Telugu instruction/input/output fields come from:
-
-- [Telugu-LLM-Labs Alpaca](https://huggingface.co/datasets/Telugu-LLM-Labs/telugu_alpaca_yahma_cleaned_filtered_romanized): 28,910 records; provenance records CC BY 4.0.
-- [Telugu-LLM-Labs GPTeacher](https://huggingface.co/datasets/Telugu-LLM-Labs/telugu_teknium_GPTeacher_general_instruct_filtered_romanized): 43,614 records; provenance records MIT.
-
-Training: 3,483,073 examples. Validation: 198,928. Test: 200,092. Vocabulary: 20,000 tokens, fitted on training only. Context: eight words. Splits group normalized instructions and remove exact sentence overlap. See `data_telugu_llm/provenance.json` for source hashes and attribution. Respect upstream terms.
-
-Downloaded CSVs and generated sequence shards are excluded from Git. Obtain the source CSVs as `alpaca.csv` and `gpteacher.csv` in a fresh directory `data_rebuilt/source/`, matching the checksums in `src/prepare_telugu_llm_data.py`.
+On Linux/macOS, activate with `source .venv/bin/activate`. Open the local URL printed by Streamlit, choose a language, enter a phrase and click **Predict next word**. If PowerShell activation is restricted, use `.\.venv\Scripts\python.exe` directly. Windows launchers accept an explicit `-PythonPath`.
 
 ```powershell
-python src/prepare_telugu_llm_data.py --data-dir data_rebuilt
-python src/train_telugu_comparison.py --data-dir data_rebuilt --output-dir outputs/reproduced --epochs 5
+python src/predict.py --language english --text "To stay healthy"
+python src/predict.py --language hindi --model bilstm --text "स्वस्थ रहने के लिए"
+python src/predict.py --language telugu --text "ఆరోగ్యంగా ఉండటానికి"
 ```
 
-Improvement scripts expect prepared data at `data_telugu_llm` and verify parent-checkpoint hashes. Rebuild in a separate checkout: the included provenance file intentionally prevents overwriting an existing prepared directory. Historical machine paths in experiment records describe the original run, not installation requirements.
+`--checkpoint PATH` selects another compatible neural checkpoint. `src/telugu_app.py` remains a compatibility entry point. Adding `?model=hybrid` to the local app URL enables the saved **Telugu hybrid v2** (20.84% top-1), not the newer discounted experiment.
 
-## Repository guide
+## Measured results
 
-- [Full architecture and flowcharts](docs/ARCHITECTURE.md): all models, formulas, training and prediction flow.
-- `src/`: preparation, training, evaluation, model and UI source.
-- `outputs/`: best checkpoints, hybrid count models, histories, configurations and metrics. Resume-checkpoint duplicates and runtime logs are excluded.
-- `presentations/`: slide versions with formulas and flowcharts. They predate the newest accuracy experiments; use the results table above for current figures.
-- [Historical README](docs/README_HISTORICAL.md): archived earlier description, including legacy experiments.
-- `FINAL_MODEL_RESULTS.md`: original four-model benchmark. Later results are in the accuracy/hybrid output folders.
+Accuracy measures exact agreement with one recorded next word. Top-5 checks whether that target appears among five suggestions. These are saved held-out measurements, not a new evaluation performed during repository cleanup.
 
-Baseline training: Adam, learning rate 0.001, batch 512, seed 42, five epochs. Bi-LSTM v2 fine-tuned at 0.0003 through epoch 10; validation selected epoch 9. V3 used AdamW, learning rate 0.0001, weight decay 0.01 and training-only dropout 0.15 through epoch 14; validation selected epoch 13. Hybrid parameters are selected by validation top-1.
+| Language | Demo LSTM top-1 | Continued Bi-LSTM top-1 | Hybrid v2 top-1 / top-5 | Test examples |
+|---|---:|---:|---:|---:|
+| Telugu | 18.03% | 19.42% | 20.84% / 37.46% | 200,092 |
+| Hindi | 29.41% | 30.89% | 32.79% / 56.43% | 284,823 |
+| English | 25.65% | 27.23% | 29.85% / 50.63% | 308,612 |
 
-## Limits
+A completed Telugu discounted-count follow-up measured **20.85% top-1 / 37.84% top-5**. Its top-1 gain over hybrid v2 is only 0.0075 percentage points and is not evidence of a statistically significant improvement. Hindi retained its parent hybrid; the English discounted follow-up has no completed test result and is excluded.
 
-The vocabulary is fixed; unseen target words count as misses. Several plausible next words may exist, while evaluation checks one recorded target. Results use one seed and repeated reporting on the same test set; a fresh untouched evaluation set is needed for independent confirmation. Exact duplicate checks do not exclude semantic duplication. Novelty, gate-specific benefit, and 80–90% accuracy are not established. Training can take hours on CPU and cannot continue through shutdown.
+See [the full results and source files](docs/RESULTS.md), [architecture](docs/ARCHITECTURE.md) and [reproduction instructions](docs/REPRODUCIBILITY.md). Different languages use different corpora, so their percentages are not directly comparable.
 
-## Gated word-character fine-tuning update
+## Project structure
 
-Completed through epoch 10; validation selected epoch 9. Held-out top-1 improved by 1.0470 percentage points over the original word-character model, while the hybrid remains higher at 20.8424%. See [full results and limitations](docs/WORDCHAR_FINE_TUNING_RESULTS.md). The demo default is unchanged.
+```text
+src/                       Application, inference, data and experiment code
+tests/                     Regression tests and real-checkpoint UI checks
+docs/                      Architecture, results, reproduction and source guide
+outputs/                   Selected checkpoints, count models and measured JSON evidence
+data_telugu_llm/            Telugu provenance only (prepared data stays local)
+data_hindi_hf/              Hindi provenance only
+data_english_hf/            English provenance only
+.github/workflows/         Automated regression checks
+requirements.txt           Demo and test dependencies
+requirements-training.txt  Additional corpus preparation dependencies
+run_*.ps1 / run_*.bat       Windows launchers
+```
+
+The [source guide](docs/DEVELOPMENT.md) explains the modules and checks. Training scripts retain stable filenames and output paths so existing experiment evidence remains traceable. Old reports, slide versions, duplicate screenshots and unused federated/heuristic demo code were removed from the current Git tree; earlier versions remain in Git history. Local submission packages and working slide files are ignored.
+
+## Verification
+
+```powershell
+python tests/run_checks.py             # Models, resume behavior and actual multilingual UI
+python tests/run_checks.py --unit-only # Synthetic-data regression tests, no saved models needed
+```
+
+Checks cover prefix/target separation, unknown-target scoring, gradients, causal CNN behavior, checkpoint round-trips, training resume, all three language demos, empty input and the Telugu hybrid route. UI checks use Streamlit AppTest. They do not establish real-world accuracy or rerun every full held-out evaluation.
+
+## Data and limitations
+
+Training uses native-script Telugu fields from the Telugu-LLM-Labs Alpaca/GPTeacher sources, Hindi Alpaca translations and English Alpaca Cleaned. [Provenance and data instructions](docs/REPRODUCIBILITY.md) record source revisions, checksums, split sizes and recorded license information. Raw datasets and prepared sequence shards are excluded from Git.
+
+- Vocabularies are fitted on training only, capped at 20,000 tokens, with eight-word contexts. Unknown target words count as accuracy misses.
+- Splits group normalized instructions and remove exact sentence overlap; semantic duplication is still possible.
+- The corpora are synthetic/translated instruction data, not representative typing logs. English preprocessing lowercases and limits characters; Indic input is restricted to its selected script.
+- Results use one seed and repeatedly reported test sets. Independent evaluation, multiple seeds and controlled ablations remain necessary for stronger claims.
+- Model probabilities are not calibrated guarantees. Neither 75–90% accuracy nor general conversational ability is established.
+- Some experiment orchestration scripts use Windows-specific locking. Core inference and baseline training support other platforms; see the reproduction guide.
+
+To export only the committed project (without local datasets, caches or submission builds), run `python src/package_project.py` or `.\create_release.ps1`. Commit changes first; exports represent `HEAD`.

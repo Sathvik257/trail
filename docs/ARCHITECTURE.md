@@ -4,7 +4,7 @@
 
 ```mermaid
 flowchart TD
- A[Alpaca + GPTeacher Telugu fields] --> B[Normalize text and group instructions]
+ A[Language-specific instruction corpus] --> B[Normalize text and group instructions]
  B --> C[Train / validation / test split]
  C --> D[Remove exact sentence overlap]
  D --> E[Training-only vocabulary: 20,000 tokens]
@@ -56,8 +56,8 @@ V2 adds three-/four-word contexts. It smooths longer-context distributions towar
 
 ```mermaid
 flowchart TD
- A[User enters Telugu and clicks Predict] --> B[Load cached LSTM checkpoint]
- B --> C[Normalize and tokenize Telugu]
+ A[User selects language and enters a phrase] --> B[Load language-specific cached LSTM]
+ B --> C[Normalize and tokenize selected language]
  C --> D[Keep last eight words]
  D --> E{Any tokens?}
  E -- No --> W[Show input warning]
@@ -75,4 +75,10 @@ The app retains the original LSTM default and hidden controls. The hybrid experi
 
 ## Evaluation
 
-All current experiments share 3,483,073 training, 198,928 validation and 200,092 test examples. Unknown targets count as misses. Vocabulary and count fitting use training only. Selection uses validation top-1 for improvement experiments; original neural baselines used validation loss. Test results are for reporting, not selection. Repeated test reporting and single-seed training limit claims; fresh independent evaluation and ablations remain future work.
+Telugu experiments share 3,483,073 training, 198,928 validation and 200,092 test examples. Hindi and English use separate corpora and vocabularies; see [data and reproduction](REPRODUCIBILITY.md). Unknown targets count as misses. Vocabulary and count fitting use training only. Selection uses validation top-1 for improvement experiments; original neural baselines used validation loss. Test results are for reporting, not selection. Repeated test reporting and single-seed training limit claims; fresh independent evaluation and ablations remain future work.
+
+## Multilingual routing and research variants
+
+`src/app.py` calls `telugu_app.main`. The language selector resolves the original LSTM checkpoint from `telugu_comparison`, `hindi_hf_comparison` or `english_hf_comparison`. Despite its historical class name, `TeluguNeuralPredictor` reads the checkpoint language for tokenization. The CLI uses the same checkpoints and rejects a mismatched explicit language.
+
+The optional Telugu `?model=hybrid` route mixes the v2 counts with the continued Bi-LSTM. Hindi/English hybrid v2 uses analogous long-context counts with validation-selected count weights of 0.35 and 0.50 respectively. Discounted-count follow-ups are separate offline experiments and are not substituted into the demo. See [the result ledger](RESULTS.md).

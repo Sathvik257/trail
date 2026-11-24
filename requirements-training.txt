@@ -1,0 +1,5 @@
+-r requirements.txt
+# Corpus download and Hindi Parquet preparation.
+datasets>=2.18.0
+pandas>=2.2.0
+pyarrow>=15.0.0

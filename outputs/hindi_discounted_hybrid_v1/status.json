@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "pid": 8236,
+  "selected_candidate": "parent",
+  "metrics": {
+    "examples": 284823,
+    "top1_accuracy": 0.32794051042226224,
+    "top5_accuracy": 0.5642627175473891
+  },
+  "verification_passed": true
+}

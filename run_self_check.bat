@@ -1,3 +1,3 @@
 @echo off
 chcp 65001 >nul
-".\.venv\Scripts\python.exe" -X utf8 "src\self_check.py"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0run_self_check.ps1" %*

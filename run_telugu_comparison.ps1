@@ -9,9 +9,7 @@ $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
 if (-not $PythonPath) {
     $PythonPath = Join-Path $PSScriptRoot '.venv\Scripts\python.exe'
-    if (-not (Test-Path -LiteralPath $PythonPath)) {
-        $PythonPath = Join-Path $env:USERPROFILE 'Downloads\UROP\.venv\Scripts\python.exe'
-    }
+
 }
 if (-not (Test-Path -LiteralPath $PythonPath)) { throw 'Pass -PythonPath pointing to Python with PyTorch installed.' }
 $trainArgs = @('-X', 'utf8', '-u', 'src\train_telugu_comparison.py', '--epochs', "$Epochs", '--threads', "$Threads", '--first-model', $FirstModel)

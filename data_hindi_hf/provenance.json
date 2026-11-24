@@ -1,0 +1,28 @@
+{
+  "language": "hindi",
+  "dataset": "iamshnoo/alpaca-cleaned-hindi",
+  "revision": "60be13ada2d3a039eb1dd8dce3d5c61eb1445d82",
+  "source_file": "data/train-00000-of-00001-9c3cdcdad5ba72d6.parquet",
+  "sha256": "8a2cec5d1dfcbe6a7a8e8fc19e386919b632d71b906177b825d98e106db96d85",
+  "license": "Unspecified in source card; verify upstream translation rights before redistribution",
+  "source_records": 51760,
+  "splits": {
+    "train": {
+      "sentences": 289602,
+      "sequences": 4998180
+    },
+    "validation": {
+      "sentences": 16423,
+      "sequences": 280957
+    },
+    "test": {
+      "sentences": 16748,
+      "sequences": 284823
+    }
+  },
+  "vocab_size": 20000,
+  "split_method": "SHA256 normalized instruction seed42 90/5/5; exact sentence overlap removed",
+  "vocab_fit": "train only",
+  "repetition_filter": "reject sentences with a four-token phrase repeated at least four times",
+  "rejected_sentences": 1265
+}

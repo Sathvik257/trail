@@ -1,4 +1,4 @@
-"""Pure neural Telugu next-word predictions, with no rules or corpus lookup."""
+"""Neural next-word inference using the language stored in the checkpoint."""
 from __future__ import annotations
 import argparse
 import json
@@ -15,8 +15,11 @@ class TeluguNeuralPredictor:
         self.model = model_from_checkpoint(self.checkpoint).eval()
         self.vocab = self.checkpoint['word_to_idx']
 
+    def word_probabilities(self, ids):
+        return self.model(torch.tensor([ids]))[0].softmax(-1)
+
     def predict(self, text, top_k=5):
-        words = tokenize(text, language='telugu')[-self.checkpoint['seq_length']:]
+        words = tokenize(text, language=self.checkpoint.get('language', 'telugu'))[-self.checkpoint['seq_length']:]
         if not words:
             return dict(predictions=[], unknown_words=[], context=[])
         unknown = [word for word in words if word not in self.vocab]
@@ -25,12 +28,10 @@ class TeluguNeuralPredictor:
         ids = [self.vocab.get(word, 1) for word in words]
         ids = [0] * (self.checkpoint['seq_length'] - len(ids)) + ids
         with torch.inference_mode():
-            logits = self.model(torch.tensor([ids]))[0]
-            # Match the test protocol: remove special tokens for word rankings;
-            # show original softmax probabilities, without renormalizing them.
-            probabilities = logits.softmax(-1)
-            logits[:2] = -torch.inf
-            indices = logits.topk(min(max(1, top_k), len(self.vocab) - 2)).indices
+            probabilities = self.word_probabilities(ids)
+            ranking = probabilities.clone()
+            ranking[:2] = -torch.inf
+            indices = ranking.topk(min(max(1, top_k), len(self.vocab) - 2)).indices
         return dict(predictions=[dict(word=self.checkpoint['idx_to_word'][int(i)],
                                       probability=float(probabilities[i])) for i in indices],
                     unknown_words=unknown, context=words)
@@ -51,4 +52,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
